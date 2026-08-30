@@ -3,11 +3,14 @@ import { supabase } from './supabase'
 
 /**
  * Shared axios instance.
- * In dev, Vite proxies /api → http://localhost:5001 (configured in vite.config.js).
- * In production, set VITE_API_BASE_URL to the deployed backend URL.
+ * In dev: If VITE_API_URL is unset, falls back to '' so Vite proxies /api → http://localhost:5001.
+ * In production: Reads VITE_API_URL (or VITE_API_BASE_URL) set in Netlify/Vercel (e.g. https://resource-advisor-api.onrender.com).
  */
+const rawBaseURL = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || ''
+const baseURL = rawBaseURL.replace(/\/+$/, '') // strip trailing slash to avoid double slashes
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '',
+  baseURL,
 })
 
 // ── Attach the live Supabase session token on every request ───────────────────
