@@ -1,0 +1,760 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   ResourceAdvisor – Industrial Telemetry Design System
+   Dual-Theme System (Light Warm Paper & Dark Ink)
+   Pachama condensed bold grotesk typography (Archivo variable), Inter body,
+   Pachama pill buttons, and hairline wireframe cards.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Google Fonts: Archivo (Condensed Heavy Grotesk), Inter (UI Grotesk), JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Tailwind v4 base ------------------------------------------------------------ */
+@import "tailwindcss";
+
+/* ── Light Theme Design Tokens (:root) ──────────────────────────────────────── */
+:root {
+  /* ── Surfaces & Canvas ── */
+  --color-background:         #F4F2EA;   /* warm paper base canvas           */
+  --color-surface:            #FAF9F5;   /* warm off-white card/panel face   */
+  --color-surface-recessed:   #ECE9DF;   /* recessed paper for inputs/bars   */
+  --color-sidebar-bg:         #1B2B22;   /* deep forest-black sidebar        */
+  --color-sidebar-border:     rgba(255, 255, 255, 0.08);
+  --color-sidebar-text:       #8C9B90;
+  --color-sidebar-text-hover: #F4F2EA;
+
+  /* ── Hairline Borders (1px wireframe) ── */
+  --color-card-border:        rgba(27, 43, 34, 0.14);
+  --color-card-border-subtle: rgba(27, 43, 34, 0.07);
+  --color-card-border-hover:  rgba(27, 43, 34, 0.28);
+  
+  /* ── Primary Inks & Typography ── */
+  --color-primary:            #1B2B22;   /* deep forest ink                  */
+  --color-primary-dark:       #121D17;
+  --color-primary-light:      #24382C;
+  --color-secondary:          #2E4A3B;   /* muted moss                       */
+  --color-accent-brand:       #2E4A3B;
+  
+  --color-text:               #1B2B22;   /* primary text ink                 */
+  --color-text-muted:         #627568;   /* secondary text                   */
+  --color-text-dim:           #8C9B90;   /* tertiary text                    */
+  --color-text-inverse:       #F4F2EA;   /* inverted warm text               */
+
+  /* ── Semantic Resource Swatches (Light Mode) ── */
+  --color-electricity:        #D98E4A;   /* amber                            */
+  --color-water:              #4A7B8C;   /* teal                             */
+  --color-waste:              #8C6B4A;   /* umber                            */
+  --color-accent-positive:    #7BA88A;   /* sage                             */
+  --color-accent-warning:     #D98E4A;   /* warning amber                    */
+  --color-accent-alert:       #C25447;   /* terracotta spike                 */
+  
+  /* ── Telemetry Chart Specific ── */
+  --color-chart-line:         #2E4A3B;
+  --color-chart-dot:          #2E4A3B;
+  --color-chart-anomaly:      #D98E4A;
+  --color-chart-grid:         rgba(27, 43, 34, 0.08);
+  --color-chart-axis:         #627568;
+  --color-chart-tooltip-bg:   #FAF9F5;
+
+  /* ── Typography ── */
+  --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* ── Radii ── */
+  --radius-card:   8px;
+  --radius-button: 9999px;
+  --radius-badge:  9999px;
+  --radius-input:  6px;
+  --radius-full:   9999px;
+
+  /* ── Elevation ── */
+  --shadow-card: none;
+  --shadow-card-hover: 0 1px 3px rgba(27, 43, 34, 0.05);
+}
+
+/* ── Dark Theme Design Tokens ([data-theme="dark"]) ─────────────────────────── */
+[data-theme="dark"] {
+  /* ── Surfaces & Canvas ── */
+  --color-background:         #15201A;   /* deep forest-ink background       */
+  --color-surface:            #1E2E25;   /* card panel face (lighter forest) */
+  --color-surface-recessed:   #111B15;   /* recessed background              */
+  --color-sidebar-bg:         #0F1813;   /* deep anchor sidebar              */
+  --color-sidebar-border:     rgba(244, 242, 234, 0.08);
+  --color-sidebar-text:       #8A9E92;
+  --color-sidebar-text-hover: #F4F2EA;
+
+  /* ── Hairline Borders (Crisp Visibility on Dark) ── */
+  --color-card-border:        rgba(244, 242, 234, 0.12);
+  --color-card-border-subtle: rgba(244, 242, 234, 0.06);
+  --color-card-border-hover:  rgba(244, 242, 234, 0.24);
+  
+  /* ── Primary Inks & Typography ── */
+  --color-primary:            #F4F2EA;   /* warm off-white as primary light  */
+  --color-primary-dark:       #FAF9F5;
+  --color-primary-light:      #1E2E25;
+  --color-secondary:          #7BA88A;   /* sage accent                      */
+  --color-accent-brand:       #7BA88A;
+  
+  --color-text:               #F4F2EA;   /* primary text (warm off-white)    */
+  --color-text-muted:         #A2B5A9;   /* high-contrast legible sage-slate */
+  --color-text-dim:           #708477;   /* tertiary text                    */
+  --color-text-inverse:       #15201A;   /* inverted dark text               */
+
+  /* ── Semantic Resource Swatches (Brightened for Dark Mode) ── */
+  --color-electricity:        #E5A158;   /* brightened amber                 */
+  --color-water:              #5C9EB3;   /* brightened teal                  */
+  --color-waste:              #A6825E;   /* brightened umber                 */
+  --color-accent-positive:    #8EC29E;   /* brightened sage                  */
+  --color-accent-warning:     #E5A158;   /* warning amber                    */
+  --color-accent-alert:       #E06A5D;   /* brightened terracotta alert      */
+  
+  /* ── Telemetry Chart Specific ── */
+  --color-chart-line:         #8EC29E;   /* high-contrast sage line          */
+  --color-chart-dot:          #8EC29E;
+  --color-chart-anomaly:      #E5A158;   /* luminous amber diamond           */
+  --color-chart-grid:         rgba(244, 242, 234, 0.07);
+  --color-chart-axis:         #8A9E92;
+  --color-chart-tooltip-bg:   #1E2E25;
+}
+
+/* ── Base Reset & Defaults ────────────────────────────────────────────────────*/
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 78, 'wght' 800;
+  line-height: 1.15;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Pachama Typography Utility Classes ─────────────────────────────────────── */
+.font-pachama-display {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 78, 'wght' 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.font-pachama-hero-number {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 78, 'wght' 850;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+
+.font-eyebrow {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 85, 'wght' 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.font-unit {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 80, 'wght' 700;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+}
+
+.font-data-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Layout Shell ───────────────────────────────────────────────────────────── */
+.app-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100dvh;
+}
+
+.mobile-header {
+  display: none;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+/* ── Sidebar (Restrained Deep Forest & Warm Ink) ──────────────────────────────*/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100dvh;
+  background-color: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-sidebar-border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  z-index: 100;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-brand {
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid var(--color-sidebar-border);
+}
+
+.sidebar-brand-name {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 80, 'wght' 800;
+  font-size: 15px;
+  color: #F4F2EA;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.sidebar-brand-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 85, 'wght' 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-sidebar-text);
+  margin-top: 4px;
+}
+
+.sidebar-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent-positive);
+  box-shadow: 0 0 0 2px rgba(123, 168, 138, 0.25);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-group-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-sidebar-text);
+  padding: 0 8px 6px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 85, 'wght' 700;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6.5px 8px;
+  border-radius: 4px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 85, 'wght' 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-sidebar-text);
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  position: relative;
+}
+
+.nav-link-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.nav-link:hover {
+  color: var(--color-sidebar-text-hover);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link:focus-visible {
+  outline: 1px solid var(--color-accent-positive);
+  outline-offset: 1px;
+}
+
+/* Active State: Minimal Indicator */
+.nav-link.active {
+  color: #F4F2EA;
+  font-variation-settings: 'wdth' 85, 'wght' 850;
+  background-color: transparent;
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 4px;
+  bottom: 4px;
+  width: 2.5px;
+  background-color: var(--color-accent-positive);
+  border-radius: 0 2px 2px 0;
+}
+
+.nav-shortcut {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  color: var(--color-sidebar-text);
+  padding: 1px 4px;
+  border: 1px solid var(--color-sidebar-border);
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.sidebar-footer {
+  padding: 12px 14px;
+  border-top: 1px solid var(--color-sidebar-border);
+}
+
+/* ── Main Content Area ────────────────────────────────────────────────────────*/
+.main-content {
+  grid-column: 2;
+  padding: 28px 36px 56px;
+  min-height: 100dvh;
+  background-color: var(--color-background);
+  transition: background-color 0.2s ease;
+}
+
+.page-header {
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-card-border-subtle);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 78, 'wght' 800;
+  font-size: 26px;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.page-subtitle {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* ── Editorial Hairline Card (Probable Futures wireframe) ─────────────────────*/
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--radius-card);
+  padding: 20px 22px;
+  box-shadow: none;
+  transition: background-color 0.2s ease, border-color 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--color-card-border-hover);
+}
+
+/* ── Buttons (Pachama Pill System) ───────────────────────────────────────────*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 85, 'wght' 800;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Pachama Primary: Solid Sage with Dark Ink Text */
+.btn-primary {
+  background-color: var(--color-accent-positive);
+  color: #121D17;
+  border-color: rgba(27, 43, 34, 0.18);
+  box-shadow: 0 1px 2px rgba(27, 43, 34, 0.05);
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* Pachama Secondary: Ghost Outline Pill */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-card-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-surface-recessed);
+  border-color: var(--color-card-border-hover);
+  color: var(--color-text);
+}
+
+/* ── Form Inputs ──────────────────────────────────────────────────────────────*/
+.input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 2.5px rgba(123, 168, 138, 0.20);
+}
+
+.input::placeholder {
+  color: var(--color-text-dim);
+}
+
+/* ── Badges ───────────────────────────────────────────────────────────────────*/
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-display);
+  font-variation-settings: 'wdth' 85, 'wght' 700;
+  font-size: 10.5px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.badge-neutral {
+  background-color: var(--color-surface-recessed);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-card-border);
+}
+
+.badge-positive {
+  background-color: rgba(123, 168, 138, 0.20);
+  color: var(--color-text);
+  border: 1px solid rgba(123, 168, 138, 0.40);
+}
+
+.badge-warning {
+  background-color: rgba(217, 142, 74, 0.18);
+  color: var(--color-electricity);
+  border: 1px solid rgba(217, 142, 74, 0.38);
+}
+
+.badge-alert {
+  background-color: rgba(194, 84, 71, 0.18);
+  color: var(--color-accent-alert);
+  border: 1px solid rgba(194, 84, 71, 0.35);
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────────*/
+.fade-in {
+  animation: fadeIn 0.18s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Skeleton Loading Primitives ───────────────────────────────────────────── */
+.skeleton {
+  background-color: var(--color-surface-recessed);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.12) 20%,
+    rgba(255, 255, 255, 0.22) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+[data-theme="dark"] .skeleton::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(244, 242, 234, 0) 0,
+    rgba(244, 242, 234, 0.04) 20%,
+    rgba(244, 242, 234, 0.08) 60%,
+    rgba(244, 242, 234, 0)
+  );
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ── Responsive Breakpoints & Mobile Adaptations ───────────────────────────── */
+
+.dashboard-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.dashboard-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.desktop-table-view {
+  display: block;
+}
+
+.mobile-card-list {
+  display: none;
+}
+
+.mobile-only-close {
+  display: none;
+}
+
+/* Tablet & Smaller (< 1024px) */
+@media (max-width: 1023px) {
+  .app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background-color: var(--color-sidebar-bg);
+    border-bottom: 1px solid var(--color-sidebar-border);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 270px;
+    height: 100dvh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobile-only-close {
+    display: flex;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .sidebar-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .main-content {
+    grid-column: 1;
+    padding: 24px 24px 56px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dashboard-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analytics-row1 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile Devices (< 768px) */
+@media (max-width: 767px) {
+  .main-content {
+    padding: 18px 16px 48px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 16px 14px;
+  }
+
+  .btn {
+    padding: 7px 14px;
+    font-size: 10.5px;
+  }
+
+  .desktop-table-view {
+    display: none;
+  }
+
+  .mobile-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .dashboard-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* Narrow Mobile (< 640px / 375px) */
+@media (max-width: 640px) {
+  .dashboard-stat-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 14px 12px 48px;
+  }
+
+  .page-title {
+    font-size: 19px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+  }
+
+  .card {
+    padding: 14px 12px;
+    border-radius: 6px;
+  }
+
+  .font-pachama-hero-number {
+    font-size: 38px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .auth-split-page {
+    grid-template-columns: 1fr !important;
+  }
+}
