@@ -37,10 +37,9 @@ A sample telemetry CSV file is included in this repository for testing the **Bul
 
 ---
 
-## 🌐 Live Demo & Video
+## 🌐 Live Demo
 
-* **Live Application:** *[Deployment URL — https://resource-advisor.netlify.app/login]*
- 
+* **Live Application:** [https://resource-advisor.netlify.app](https://resource-advisor.netlify.app)
 
 ---
 
