@@ -16,8 +16,8 @@ Use these credentials to sign in and explore the full platform:
 
 ## 🌐 Live Demo & Video
 
-* **Live Application:** *[Deployment URL — https://resource-advisor-demo.vercel.app (Placeholder)]*
-* **Video Walkthrough:** *[Demo Video Link — https://youtu.be/placeholder (Placeholder)]*
+* **Live Application:** *[Deployment URL — https://resource-advisor.netlify.app/login]*
+ 
 
 ---
 
