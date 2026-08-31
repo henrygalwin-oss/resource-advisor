@@ -12,6 +12,10 @@ Use these credentials to sign in and explore the full platform:
 * **Password:** `Demo1234!`
 * **Access Level:** System Administrator (Full multi-building access across Block A, Block B, and Block C, pre-loaded with sample telemetry readings, baseline rolling averages, and threshold budgets).
 
+* **Email:** `demo.manager@resourceadvisor.app`
+* **Password:** `DemoManager1234!`
+* **Access Level:** Department Manager (Scoped access limited to Block A only — both in the UI and enforced at the API level, demonstrating the platform's role-based multi-user access control).
+
 ---
 
 ## 📂 Sample CSV for Bulk Import
@@ -37,7 +41,7 @@ A sample telemetry CSV file is included in this repository for testing the **Bul
 
 ---
 
-## 🌐 Live Demo
+## 🌐 Live Demo & Video
 
 * **Live Application:** [https://resource-advisor.netlify.app](https://resource-advisor.netlify.app)
 
