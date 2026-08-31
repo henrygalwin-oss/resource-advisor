@@ -14,7 +14,7 @@ Use these credentials to sign in and explore the full platform:
 
 ---
 
-## 🌐 Live Demo & Video
+## 🌐 Live Demo
 
 * **Live Application:** *[Deployment URL — https://resource-advisor.netlify.app/login]*
  
