@@ -14,6 +14,29 @@ Use these credentials to sign in and explore the full platform:
 
 ---
 
+## 📂 Sample CSV for Bulk Import
+
+A sample telemetry CSV file is included in this repository for testing the **Bulk CSV Import** feature on the Records page.
+
+**File:** [`sample-data.csv`](./sample-data.csv)
+
+| Column | Values | Description |
+| :--- | :--- | :--- |
+| `department` | `Block A`, `Block B`, `Block C` | Building block identifier |
+| `type` | `electricity`, `water`, `waste` | Resource category |
+| `amount` | Numeric | Consumption quantity (kWh / L / kg) |
+| `date` | `YYYY-MM-DD` | Measurement date |
+
+**The file includes deliberate anomaly spikes** (Block A electricity ×4 on Aug 8–10, Block B water ×4 on Aug 22–24) so the anomaly detection dashboard has visible alerts after import.
+
+**How to test:**
+1. Sign in with the demo admin credentials
+2. Navigate to **Records → Bulk CSV Import**
+3. Upload `sample-data.csv`
+4. Check the **Dashboard** — anomaly spike indicators will appear on the charts
+
+---
+
 ## 🌐 Live Demo & Video
 
 * **Live Application:** *[Deployment URL — https://resource-advisor-demo.vercel.app (Placeholder)]*
