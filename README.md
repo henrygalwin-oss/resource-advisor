@@ -39,8 +39,8 @@ A sample telemetry CSV file is included in this repository for testing the **Bul
 
 ## 🌐 Live Demo & Video
 
-* **Live Application:** *[Deployment URL — https://resource-advisor-demo.vercel.app (Placeholder)]*
-* **Video Walkthrough:** *[Demo Video Link — https://youtu.be/placeholder (Placeholder)]*
+* **Live Application:** *[Deployment URL — https://resource-advisor.netlify.app/login]*
+ 
 
 ---
 
